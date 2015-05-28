@@ -19,5 +19,12 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("-5------------------");
             AreEqual(5, ScoreCalculator.CalculateFor(line));
         }
+
+        [Test]
+        public void returns_fifteen_when_only_fifteen_pins_are_knocked_down_without_spare_or_strike()
+        {
+            var line = new Line("-5-2-3-4-1----------");
+            AreEqual(15, ScoreCalculator.CalculateFor(line));
+        }
     }
 }
