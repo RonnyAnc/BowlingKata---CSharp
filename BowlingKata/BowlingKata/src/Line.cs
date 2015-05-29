@@ -7,18 +7,18 @@ namespace Ronny.BowlingKata
 {
     public class Line
     {
-        private readonly Frame[] frames;
+        public Frame[] Frames { get; }
 
         public Line(string inputLine)
         {
-            frames = new Frame[10];
-            for (int i = 0, j = 0; j < frames.Length; i += 2, j++)
-                frames[j] = new Frame(inputLine[i], inputLine[i + 1]);
+            Frames = new Frame[10];
+            for (int i = 0, j = 0; j < Frames.Length; i += 2, j++)
+                Frames[j] = new Frame(inputLine[i], inputLine[i + 1]);
         }
 
-        public Frame[] Frames()
+        public int FramesAmount()
         {
-            return frames;
+            return Frames.Length;
         }
     }
 }

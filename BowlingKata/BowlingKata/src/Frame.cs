@@ -1,35 +1,47 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Ronny.BowlingKata
 {
     public class Frame
     {
-        private readonly Roll[] rolls;
+        public Roll[] Rolls { get; }
+
+        public FrameType Type { get; private set; }
 
         public Frame(params char[] rolls)
         {
-            this.rolls = new Roll[rolls.Length];
+            Type = rolls.Contains('/') ? FrameType.Spare : FrameType.Regular;
+            Rolls = new Roll[rolls.Length];
             for (var i = 0; i < rolls.Length; i++)
-                this.rolls[i] = new Roll(rolls[i], PinsForRollWithIndex(rolls, i));
+                Rolls[i] = new Roll(rolls[i], PinsForRollWithIndex(rolls, i));
         }
 
-        private static int PinsForRollWithIndex(char[] rolls, int i)
+        private static int PinsForRollWithIndex(IReadOnlyList<char> rolls, int i)
         {
-            if (char.IsDigit(rolls[i])) return ParseToInt(rolls[i]);
-            if (rolls[i] == '/') return 10 - ParseToInt(rolls[i - 1]);
-            return 0;
-        }
-
-        public int Pins()
-        {
-            return rolls.Sum(roll => roll.Pins);
+            var symbol = rolls[i];
+            if (symbol == '/') return 10 - ParseToInt(rolls[i - 1]);
+            return ParseToInt(symbol);
         }
 
         private static int ParseToInt(char symbol)
         {
-            if (symbol == '-') return 0;
-            return Int32.Parse(symbol.ToString());
+            return char.IsDigit(symbol) ? int.Parse(symbol.ToString()) : 0;
+        }
+
+        public int Pins()
+        {
+            return Rolls.Sum(roll => roll.Pins);
+        }
+
+        public Roll this [int index]
+        {
+            get
+            {
+                if (index >= 0 && index < Rolls.Length) return Rolls[index];
+                throw new System.IndexOutOfRangeException();
+            }
         }
     }
 }
