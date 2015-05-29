@@ -5,14 +5,9 @@ namespace Ronny.BowlingKata
         public static int CalculateFor(Line line)
         {
             var score = 0;
-            foreach (var character in line.ToString())
-                if (char.IsDigit(character)) score += ParseToInt(character);
+            foreach (var frame in line.Frames())
+                score += frame.Pins();
             return score;
-        }
-
-        private static int ParseToInt(char character)
-        {
-            return int.Parse(character.ToString());
         }
     }
 }

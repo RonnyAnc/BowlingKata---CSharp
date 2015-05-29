@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Frame.cs" />
     <Compile Include="src\Line.cs" />
+    <Compile Include="src\Roll.cs" />
     <Compile Include="src\ScoreCalculator.cs" />
     <Compile Include="tests\ScoreCalculatorShould.cs" />
   </ItemGroup>
