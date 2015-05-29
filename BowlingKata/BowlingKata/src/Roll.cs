@@ -2,17 +2,13 @@
 {
     public class Roll
     {
+        public char Symbol { get; private set; }
         public int Pins { get; private set; }
 
-        public Roll(char symbol)
+        public Roll(char symbol, int pins)
         {
-            Pins = ParseToInt(symbol);
-        }
-
-        private static int ParseToInt(char symbol)
-        {
-            if (symbol == '-') return 0;
-            return int.Parse(symbol.ToString());
+            Symbol = symbol;
+            Pins = pins;
         }
     }
 }

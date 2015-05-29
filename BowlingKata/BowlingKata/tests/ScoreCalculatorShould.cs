@@ -26,5 +26,12 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("-5-2-3-4-1----------");
             AreEqual(15, ScoreCalculator.CalculateFor(line));
         }
+
+        [Test]
+        public void returns_teen_when_player_got_only_a_spare()
+        {
+            var line = new Line("3/------------------");
+            AreEqual(10, ScoreCalculator.CalculateFor(line));
+        }
     }
 }
