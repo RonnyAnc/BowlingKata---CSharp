@@ -1,5 +1,4 @@
-using System;
-using System.Linq;
+using static Ronny.BowlingKata.FrameType;
 
 namespace Ronny.BowlingKata
 {
@@ -22,14 +21,19 @@ namespace Ronny.BowlingKata
 
         private int CalculateScoreForFrame(int id)
         {
-            if (Line.Frames[id].Type == FrameType.Spare)
+            if (Frame(id).Type == Spare)
                 return 10 + PinsForNextRoll(id);
-            return Line.Frames[id].Pins();
+            return Frame(id).Pins();
+        }
+
+        private Frame Frame(int id)
+        {
+            return Line.Frames[id];
         }
 
         private int PinsForNextRoll(int id)
         {
-            return Line.Frames[id + 1].Rolls[0].Pins;
+            return Line.PinsForFirsRollInFrame(id + 1);
         }
     }
 }

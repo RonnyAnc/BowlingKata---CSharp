@@ -12,13 +12,18 @@ namespace Ronny.BowlingKata
 
         public Frame(params char[] rolls)
         {
-            Type = rolls.Contains('/') ? FrameType.Spare : FrameType.Regular;
+            Type = ExtractTypeFromSymbols(rolls);
             Rolls = new Roll[rolls.Length];
             for (var i = 0; i < rolls.Length; i++)
-                Rolls[i] = new Roll(rolls[i], PinsForRollWithIndex(rolls, i));
+                Rolls[i] = new Roll(rolls[i], ParsePinsForRollWithIndex(rolls, i));
         }
 
-        private static int PinsForRollWithIndex(IReadOnlyList<char> rolls, int i)
+        private static FrameType ExtractTypeFromSymbols(IEnumerable<char> rolls)
+        {
+            return rolls.Contains('/') ? FrameType.Spare : FrameType.Regular;
+        }
+
+        private static int ParsePinsForRollWithIndex(IReadOnlyList<char> rolls, int i)
         {
             var symbol = rolls[i];
             if (symbol == '/') return 10 - ParseToInt(rolls[i - 1]);
@@ -40,8 +45,13 @@ namespace Ronny.BowlingKata
             get
             {
                 if (index >= 0 && index < Rolls.Length) return Rolls[index];
-                throw new System.IndexOutOfRangeException();
+                throw new IndexOutOfRangeException();
             }
+        }
+
+        public int PinsForFirstRoll()
+        {
+            return Rolls[0].Pins;
         }
     }
 }

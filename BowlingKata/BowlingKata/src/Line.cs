@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Runtime.Versioning;
-
-namespace Ronny.BowlingKata
+﻿namespace Ronny.BowlingKata
 {
     public class Line
     {
         public Frame[] Frames { get; }
+        private int currentIndex = 0;
 
         public Line(string inputLine)
         {
@@ -16,9 +12,19 @@ namespace Ronny.BowlingKata
                 Frames[j] = new Frame(inputLine[i], inputLine[i + 1]);
         }
 
+        public Frame CurrentFrame()
+        {
+            return Frames[currentIndex];
+        }
+
         public int FramesAmount()
         {
             return Frames.Length;
+        }
+
+        public int PinsForFirsRollInFrame(int id)
+        {
+            return Frames[id].PinsForFirstRoll();
         }
     }
 }
