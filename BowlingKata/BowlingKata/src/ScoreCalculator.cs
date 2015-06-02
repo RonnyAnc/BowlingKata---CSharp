@@ -4,36 +4,24 @@ namespace Ronny.BowlingKata
 {
     public class ScoreCalculator
     {
-        private Line Line { get; set; }
-
-        public ScoreCalculator(Line line)
-        {
-            Line = line;
-        }
-
-        public int CalculateScore()
+        public static int CalculateScoreForLine(Line line)
         {
             var score = 0;
-            for (var i = 0; i < Line.FramesAmount(); i++)
-                score += CalculateScoreForFrame(i);
+            for (var i = 0; i < line.FramesAmount(); i++)
+                score += CalculateScoreForFrameInLine(i, line);
             return score;
         }
 
-        private int CalculateScoreForFrame(int id)
+        private static int CalculateScoreForFrameInLine(int id, Line line)
         {
-            if (Frame(id).Type == Spare)
-                return 10 + PinsForNextRoll(id);
-            return Frame(id).Pins();
+            if (line.Frames[id].Type == Spare)
+                return 10 + PinsForNextRollInLine(id, line);
+            return line.Frames[id].Pins();
         }
 
-        private Frame Frame(int id)
+        private static int PinsForNextRollInLine(int id, Line line)
         {
-            return Line.Frames[id];
-        }
-
-        private int PinsForNextRoll(int id)
-        {
-            return Line.PinsForFirsRollInFrame(id + 1);
+            return line.PinsForFirsRollInFrame(id + 1);
         }
     }
 }
