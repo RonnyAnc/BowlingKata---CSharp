@@ -2,6 +2,8 @@
 {
     public enum FrameType
     {
-        Spare, Regular
+        Spare,
+        Regular,
+        Strike
     }
 }

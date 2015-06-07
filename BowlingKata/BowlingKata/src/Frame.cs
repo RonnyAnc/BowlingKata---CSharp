@@ -19,6 +19,8 @@ namespace Ronny.BowlingKata
 
         private static FrameType ExtractTypeFromSymbols(IEnumerable<char> rolls)
         {
+            // TODO refactor
+            if (rolls.Contains('X')) return FrameType.Strike;
             return rolls.Contains('/') ? FrameType.Spare : FrameType.Regular;
         }
 

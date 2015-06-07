@@ -47,6 +47,13 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("X-------------------");
             AreEqual(10, ScoreCalculator.CalculateScoreForLine(line));
         }
+
+        [Test]
+        public void returns_twentyeight_when_player_get_strike_and_then_knock_down_nine_pins_in_two_next_rolls()
+        {
+            var line = new Line("X45-----------------");
+            AreEqual(28, ScoreCalculator.CalculateScoreForLine(line));
+        }
         
     }
 }
