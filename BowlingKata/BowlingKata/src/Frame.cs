@@ -56,5 +56,10 @@ namespace Ronny.BowlingKata
         {
             return Rolls[0].Pins;
         }
+
+        public int PinsForSecondRoll()
+        {
+            return Rolls[1].Pins;
+        }
     }
 }
