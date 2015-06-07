@@ -7,7 +7,6 @@ namespace Ronny.BowlingKata
     public class Frame
     {
         public Roll[] Rolls { get; }
-
         public FrameType Type { get; private set; }
 
         public Frame(params char[] rolls)
@@ -26,9 +25,10 @@ namespace Ronny.BowlingKata
         private static int ParsePinsForRollWithIndex(IReadOnlyList<char> rolls, int i)
         {
             var symbol = rolls[i];
-            if (symbol == '/') return 10 - ParseToInt(rolls[i - 1]);
+            const int totalPins = 10;
+            if (symbol == '/') return totalPins - ParseToInt(rolls[i - 1]);
             if (char.IsDigit(symbol)) return ParseToInt(symbol);
-            return symbol == 'X' ? 10 : 0;
+            return symbol == 'X' ? totalPins : 0;
         }
 
         private static int ParseToInt(char symbol)
