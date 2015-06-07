@@ -2,6 +2,8 @@ using static Ronny.BowlingKata.FrameType;
 
 namespace Ronny.BowlingKata
 {
+    using System;
+
     public class ScoreCalculator
     {
         public static int CalculateScoreForLine(Line line)
@@ -33,6 +35,7 @@ namespace Ronny.BowlingKata
 
         private static int PinsForNextRollInLine(int id, Line line)
         {
+            if (id == 9) return line.PinsForThirdRollInFrame(id);
             return line.PinsForFirsRollInFrame(id + 1);
         }
     }

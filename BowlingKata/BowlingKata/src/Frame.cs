@@ -63,5 +63,10 @@ namespace Ronny.BowlingKata
                 throw new Exception("Strike Frames only have one roll");
             return Rolls[1].Pins;
         }
+
+        public int PinsForThirdRoll()
+        {
+            return Rolls[2].Pins;
+        }
     }
 }

@@ -61,5 +61,12 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("XnXnXn--------------");
             AreEqual(60, ScoreCalculator.CalculateScoreForLine(line));
         }
+
+        [Test]
+        public void returns_one_hundred_fifty_when_player_always_knock_down_five_pins()
+        {
+            var line = new Line("5/5/5/5/5/5/5/5/5/5/5");
+            AreEqual(150, ScoreCalculator.CalculateScoreForLine(line));
+        }
     }
 }
