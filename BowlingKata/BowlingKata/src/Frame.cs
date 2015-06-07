@@ -59,6 +59,8 @@ namespace Ronny.BowlingKata
 
         public int PinsForSecondRoll()
         {
+            if (Type == FrameType.Strike)
+                throw new Exception("Strike Frames only have one roll");
             return Rolls[1].Pins;
         }
     }

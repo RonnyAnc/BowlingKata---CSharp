@@ -1,6 +1,7 @@
 ﻿namespace Ronny.BowlingKata
 {
     using System;
+    using static FrameType;
 
     public class Line
     {
@@ -31,6 +32,8 @@
 
         public int PinsForSecondRollInFrame(int id)
         {
+            if (Frames[id].Type == Strike)
+                return Frames[id + 1].PinsForFirstRoll();
             return Frames[id].PinsForSecondRoll();
         }
     }

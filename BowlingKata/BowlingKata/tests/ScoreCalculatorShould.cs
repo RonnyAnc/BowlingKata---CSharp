@@ -54,5 +54,12 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("Xn45----------------");
             AreEqual(28, ScoreCalculator.CalculateScoreForLine(line));
         }
+
+        [Test]
+        public void returns_sixty_when_player_get_three_following_strikes()
+        {
+            var line = new Line("XnXnXn--------------");
+            AreEqual(60, ScoreCalculator.CalculateScoreForLine(line));
+        }
     }
 }
