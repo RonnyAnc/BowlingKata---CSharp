@@ -40,5 +40,13 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("6/4-----------------");
             AreEqual(18, ScoreCalculator.CalculateScoreForLine(line));
         }
+
+        [Test]
+        public void returns_ten_when_player_get_only_a_strike()
+        {
+            var line = new Line("X-------------------");
+            AreEqual(10, ScoreCalculator.CalculateScoreForLine(line));
+        }
+        
     }
 }

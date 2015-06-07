@@ -27,12 +27,13 @@ namespace Ronny.BowlingKata
         {
             var symbol = rolls[i];
             if (symbol == '/') return 10 - ParseToInt(rolls[i - 1]);
-            return ParseToInt(symbol);
+            if (char.IsDigit(symbol)) return ParseToInt(symbol);
+            return symbol == 'X' ? 10 : 0;
         }
 
         private static int ParseToInt(char symbol)
         {
-            return char.IsDigit(symbol) ? int.Parse(symbol.ToString()) : 0;
+            return int.Parse(symbol.ToString());
         }
 
         public int Pins()
