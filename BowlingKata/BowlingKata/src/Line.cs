@@ -6,7 +6,6 @@
     public class Line
     {
         public Frame[] Frames { get; } = new Frame[10];
-        private int currentIndex = 0;
 
         public Line(string inputLine)
         {
@@ -17,18 +16,23 @@
         {
             for (int i = 0, j = 0; j < Frames.Length; i += 2, j++)
             {
-                if (i == 18 && inputLine.Length == 21)
+                if (AreThereExtraRollsIn(inputLine) && IsLastFrame(i))
                 {
                     Frames[j] = new Frame(inputLine[i], inputLine[i + 1], inputLine[i + 2]);
-                    break;
+                    return;
                 }
                 Frames[j] = new Frame(inputLine[i], inputLine[i + 1]);
             }
         }
 
-        public Frame CurrentFrame()
+        private static bool IsLastFrame(int i)
         {
-            return Frames[currentIndex];
+            return i == 18;
+        }
+
+        private static bool AreThereExtraRollsIn(string inputLine)
+        {
+            return inputLine.Length == 21;
         }
 
         public int FramesAmount()
@@ -43,7 +47,7 @@
 
         public int PinsForSecondRollInFrame(int id)
         {
-            if (Frames[id].Type == Strike)
+            if (IsStrikeThis(Frames[id]))
                 return Frames[id + 1].PinsForFirstRoll();
             return Frames[id].PinsForSecondRoll();
         }
@@ -51,6 +55,11 @@
         public int PinsForThirdRollInFrame(int id)
         {
             return Frames[id].PinsForThirdRoll();
+        }
+
+        private bool IsStrikeThis(Frame frame)
+        {
+            return frame.Type == Strike;
         }
     }
 }
