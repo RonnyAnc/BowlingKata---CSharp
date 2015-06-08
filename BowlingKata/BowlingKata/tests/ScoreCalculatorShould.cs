@@ -68,5 +68,12 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("5/5/5/5/5/5/5/5/5/5/5");
             AreEqual(150, ScoreCalculator.CalculateScoreForLine(line));
         }
+
+        [Test]
+        public void returns_three_hundred_when_player_always_get_a_strike()
+        {
+            var line = new Line("XnXnXnXnXnXnXnXnXnXXX");
+            AreEqual(300, ScoreCalculator.CalculateScoreForLine(line));
+        }
     }
 }

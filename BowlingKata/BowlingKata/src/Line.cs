@@ -18,7 +18,7 @@
             {
                 if (AreThereExtraRollsIn(inputLine) && IsLastFrame(i))
                 {
-                    Frames[j] = new Frame(inputLine[i], inputLine[i + 1], inputLine[i + 2]);
+                    Frames[j] = new EspecialFrame(inputLine[i], inputLine[i + 1], inputLine[i + 2]);
                     return;
                 }
                 Frames[j] = new Frame(inputLine[i], inputLine[i + 1]);
@@ -54,7 +54,7 @@
 
         public int PinsForThirdRollInFrame(int id)
         {
-            return Frames[id].PinsForThirdRoll();
+            return ((EspecialFrame) Frames[id]).PinsForThirdRoll();
         }
 
         private bool IsStrikeThis(Frame frame)

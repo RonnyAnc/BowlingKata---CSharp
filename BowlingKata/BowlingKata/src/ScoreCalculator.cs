@@ -16,6 +16,7 @@ namespace Ronny.BowlingKata
 
         private static int CalculateScoreForFrameInLine(int id, Line line)
         {
+            // TODO refactor
             if (line.Frames[id].Type == Spare)
                 return 10 + PinsForNextRollInLine(id, line);
             if (line.Frames[id].Type == Strike)
@@ -25,16 +26,23 @@ namespace Ronny.BowlingKata
 
         private static int PinsForTwoNextRollsInLine(int id, Line line)
         {
+            // TODO refactor
+            if (id == 8)
+                return PinsForNextRollInLine(id, line) + line.Frames[id + 1].PinsForSecondRoll();
+            if (id == 9)
+                return line.Frames[id].PinsForSecondRoll() + ((EspecialFrame) line.Frames[id]).PinsForThirdRoll();
             return PinsForNextRollInLine(id, line) + PinsForNextToNextRollInLine(id, line);
         }
 
         private static int PinsForNextToNextRollInLine(int id, Line line)
         {
+            // TODO change of line method
             return line.PinsForSecondRollInFrame(id + 1);
         }
 
         private static int PinsForNextRollInLine(int id, Line line)
         {
+            // TODO change of line method
             if (id == 9) return line.PinsForThirdRollInFrame(id);
             return line.PinsForFirsRollInFrame(id + 1);
         }
