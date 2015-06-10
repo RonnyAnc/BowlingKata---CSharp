@@ -17,7 +17,7 @@ namespace Ronny.BowlingKata
                 Rolls[i] = new Roll(rolls[i], ParsePinsForRollWithIndex(rolls, i));
         }
 
-        private static FrameType ExtractTypeFromSymbols(IEnumerable<char> rolls)
+        private static FrameType ExtractTypeFromSymbols(IReadOnlyCollection<char> rolls)
         {
             if (rolls.Contains('X')) return FrameType.Strike;
             if (rolls.Contains('/')) return FrameType.Spare;
