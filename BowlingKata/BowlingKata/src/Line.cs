@@ -42,14 +42,15 @@
 
         public int PinsForNextRollAfterFrame(int id)
         {
-            if (id == 9) return PinsForThirdRollInFrame(id);
+            if (id == 9) return Frames[id].PinsForSecondRoll();
             return Frames[id + 1].PinsForFirstRoll();
         }
 
         public int PinsForNextToNextRollAfterFrame(int id)
         {
-            if (IsStrikeThis(Frames[id + 1]))
-                return Frames[id + 2].PinsForFirstRoll();
+            if (id == 8) return Frames[id + 1].PinsForSecondRoll();
+            if (id == 9) return ((EspecialFrame)Frames[id]).PinsForThirdRoll();
+            if (IsStrikeThis(Frames[id + 1])) return Frames[id + 2].PinsForFirstRoll();
             return Frames[id + 1].PinsForSecondRoll();
         }
 
