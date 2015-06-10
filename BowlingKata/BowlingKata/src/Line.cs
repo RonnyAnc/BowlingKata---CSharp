@@ -50,7 +50,7 @@
         {
             if (id == 8) return Frames[id + 1].PinsForSecondRoll();
             if (id == 9) return ((EspecialFrame)Frames[id]).PinsForThirdRoll();
-            if (IsStrikeThis(Frames[id + 1])) return Frames[id + 2].PinsForFirstRoll();
+            if (IsStrike(Frames[id + 1])) return Frames[id + 2].PinsForFirstRoll();
             return Frames[id + 1].PinsForSecondRoll();
         }
 
@@ -59,7 +59,7 @@
             return ((EspecialFrame) Frames[id]).PinsForThirdRoll();
         }
 
-        private bool IsStrikeThis(Frame frame)
+        private bool IsStrike(Frame frame)
         {
             return frame.Type == Strike;
         }
