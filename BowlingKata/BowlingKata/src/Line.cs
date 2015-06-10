@@ -40,12 +40,13 @@
             return Frames.Length;
         }
 
-        public int PinsForFirsRollInFrame(int id)
+        public int PinsForNextRollAfterFrame(int id)
         {
-            return Frames[id].PinsForFirstRoll();
+            if (id == 9) return PinsForThirdRollInFrame(id);
+            return Frames[id + 1].PinsForFirstRoll();
         }
 
-        public int PinsForNextToNextRoll(int id)
+        public int PinsForNextToNextRollAfterFrame(int id)
         {
             if (IsStrikeThis(Frames[id + 1]))
                 return Frames[id + 2].PinsForFirstRoll();

@@ -36,7 +36,6 @@ namespace Ronny.BowlingKata
 
         private static int PinsForNextToNextRollInLine(int id, Line line)
         {
-            // TODO change of line method
             return line.PinsForNextToNextRoll(id);
         }
 
