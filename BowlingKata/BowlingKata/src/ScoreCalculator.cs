@@ -7,8 +7,18 @@ namespace Ronny.BowlingKata
     {
         public static int CalculateScoreForLine(Line line)
         {
+            return ScoreForFirstNineFramesIn(line) + ScoreForLastFrameIn(line);
+        }
+
+        private static int ScoreForLastFrameIn(Line line)
+        {
+            return line.Frames[9].Pins();
+        }
+
+        private static int ScoreForFirstNineFramesIn(Line line)
+        {
             var score = 0;
-            for (var i = 0; i < line.FramesAmount(); i++)
+            for (var i = 0; i < line.FramesAmount() - 1; i++)
                 score += CalculateScoreForFrameInLine(i, line);
             return score;
         }
