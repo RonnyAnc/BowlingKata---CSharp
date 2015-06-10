@@ -16,7 +16,7 @@
         {
             for (int i = 0, j = 0; j < Frames.Length; i += 2, j++)
             {
-                if (AreThereExtraRollsIn(inputLine) && IsLastFrame(i))
+                if (AreThereExtraRollsIn(inputLine) && IsFirstRollOfLastFrame(i))
                 {
                     Frames[j] = new EspecialFrame(inputLine[i], inputLine[i + 1], inputLine[i + 2]);
                     return;
@@ -25,7 +25,7 @@
             }
         }
 
-        private static bool IsLastFrame(int i)
+        private static bool IsFirstRollOfLastFrame(int i)
         {
             return i == 18;
         }
@@ -48,10 +48,20 @@
 
         public int PinsForNextToNextRollAfterFrame(int id)
         {
-            if (id == 8) return Frames[id + 1].PinsForSecondRoll();
-            if (id == 9) return ((EspecialFrame)Frames[id]).PinsForThirdRoll();
+            if (IsSecondToLastFrame(id)) return Frames[id + 1].PinsForSecondRoll();
+            if (IsLastFrame(id)) return ((EspecialFrame)Frames[id]).PinsForThirdRoll();
             if (IsStrike(Frames[id + 1])) return Frames[id + 2].PinsForFirstRoll();
             return Frames[id + 1].PinsForSecondRoll();
+        }
+
+        private bool IsSecondToLastFrame(int id)
+        {
+            return id == 8;
+        }
+
+        private bool IsLastFrame(int id)
+        {
+            return id == 9;
         }
 
         public int PinsForThirdRollInFrame(int id)
