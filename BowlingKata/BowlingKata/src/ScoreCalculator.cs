@@ -25,11 +25,12 @@ namespace Ronny.BowlingKata
 
         private static int CalculateScoreForFrameInLine(int id, Line line)
         {
+            var currentFramePins = line.Frames[id].Pins();
             if (IsSpare(line.Frames[id]))
-                return 10 + PinsForNextRollInLine(id, line);
+                return currentFramePins + PinsForNextRollInLine(id, line);
             if (IsStrike(line.Frames[id]))
-                return 10 + PinsForTwoNextRollsInLine(id, line);
-            return line.Frames[id].Pins();
+                return currentFramePins + PinsForTwoNextRollsInLine(id, line);
+            return currentFramePins;
         }
 
         private static bool IsStrike(Frame frame)
