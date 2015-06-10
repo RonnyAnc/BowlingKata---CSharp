@@ -41,31 +41,19 @@
 
         public int PinsForNextRollAfterFrame(int id)
         {
-            if (id == 9) return Frames[id].PinsForSecondRoll();
             return Frames[id + 1].PinsForFirstRoll();
         }
 
         public int PinsForNextToNextRollAfterFrame(int id)
         {
-            if (IsSecondToLastFrame(id)) return Frames[id + 1].PinsForSecondRoll();
-            if (IsLastFrame(id)) return ((EspecialFrame)Frames[id]).PinsForThirdRoll();
+            if (IsNextToLastFrame(id)) return Frames[id + 1].PinsForSecondRoll();
             if (IsStrike(Frames[id + 1])) return Frames[id + 2].PinsForFirstRoll();
             return Frames[id + 1].PinsForSecondRoll();
         }
 
-        private bool IsSecondToLastFrame(int id)
+        private bool IsNextToLastFrame(int id)
         {
             return id == 8;
-        }
-
-        private bool IsLastFrame(int id)
-        {
-            return id == 9;
-        }
-
-        public int PinsForThirdRollInFrame(int id)
-        {
-            return ((EspecialFrame) Frames[id]).PinsForThirdRoll();
         }
 
         private bool IsStrike(Frame frame)
