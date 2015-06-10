@@ -16,12 +16,21 @@ namespace Ronny.BowlingKata
 
         private static int CalculateScoreForFrameInLine(int id, Line line)
         {
-            // TODO refactor
-            if (line.Frames[id].Type == Spare)
+            if (IsSpare(line.Frames[id]))
                 return 10 + PinsForNextRollInLine(id, line);
-            if (line.Frames[id].Type == Strike)
+            if (IsStrike(line.Frames[id]))
                 return 10 + PinsForTwoNextRollsInLine(id, line);
             return line.Frames[id].Pins();
+        }
+
+        private static bool IsStrike(Frame frame)
+        {
+            return frame.Type == Strike;
+        }
+
+        private static bool IsSpare(Frame frame)
+        {
+            return frame.Type == Spare;
         }
 
         private static int PinsForTwoNextRollsInLine(int id, Line line)
