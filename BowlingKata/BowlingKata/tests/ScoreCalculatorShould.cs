@@ -75,5 +75,14 @@ namespace Ronny.BowlingKata.tests
             var line = new Line("XnXnXnXnXnXnXnXnXnXXX");
             AreEqual(300, ScoreCalculator.CalculateScoreForLine(line));
         }
+
+        [Test]
+        public void return_thirty_when_player_only_get_three_strikes_in_last_frame()
+        {
+            var line = new Line("------------------XXX");
+            AreEqual(30, ScoreCalculator.CalculateScoreForLine(line));
+        }
+
+
     }
 }
