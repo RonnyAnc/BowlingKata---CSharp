@@ -43,15 +43,6 @@ namespace Ronny.BowlingKata
             return Rolls.Sum(roll => roll.Pins);
         }
 
-        public Roll this [int index]
-        {
-            get
-            {
-                if (index >= 0 && index < Rolls.Length) return Rolls[index];
-                throw new IndexOutOfRangeException();
-            }
-        }
-
         public int PinsForFirstRoll()
         {
             return Rolls[0].Pins;
