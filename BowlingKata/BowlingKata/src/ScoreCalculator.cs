@@ -37,7 +37,7 @@ namespace Ronny.BowlingKata
         private static int PinsForNextToNextRollInLine(int id, Line line)
         {
             // TODO change of line method
-            return line.PinsForSecondRollInFrame(id + 1);
+            return line.PinsForNextToNextRoll(id);
         }
 
         private static int PinsForNextRollInLine(int id, Line line)

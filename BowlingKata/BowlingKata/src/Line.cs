@@ -45,11 +45,11 @@
             return Frames[id].PinsForFirstRoll();
         }
 
-        public int PinsForSecondRollInFrame(int id)
+        public int PinsForNextToNextRoll(int id)
         {
-            if (IsStrikeThis(Frames[id]))
-                return Frames[id + 1].PinsForFirstRoll();
-            return Frames[id].PinsForSecondRoll();
+            if (IsStrikeThis(Frames[id + 1]))
+                return Frames[id + 2].PinsForFirstRoll();
+            return Frames[id + 1].PinsForSecondRoll();
         }
 
         public int PinsForThirdRollInFrame(int id)
