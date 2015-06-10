@@ -1,6 +1,5 @@
 ﻿namespace Ronny.BowlingKata
 {
-    using System;
     using static FrameType;
 
     public class Line

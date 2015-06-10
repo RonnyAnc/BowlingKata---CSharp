@@ -2,7 +2,6 @@ using static Ronny.BowlingKata.FrameType;
 
 namespace Ronny.BowlingKata
 {
-    using System;
 
     public class ScoreCalculator
     {
